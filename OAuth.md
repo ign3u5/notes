@@ -40,7 +40,7 @@ sequenceDiagram
 
 ### Sequence of events
 #### Front channel communication
-1. Make a GET request to the *client* initiating the process of granting permission to the protected resource
+1. The *user* makes a GET request to the *client* initiating the process of granting permission to the protected resource
 2. The *client* redirects to the *auth server* with the following detail
    ```
    HTTP 302 Found
@@ -50,7 +50,7 @@ sequenceDiagram
    - The `state` is a randomly generated string to prevent request forgery
 3. The *user* follows redirect URL with query params
 4. The *auth server* then displays an access request page to the *user*
-5. The user approves the request which includes a request id that is used server side to access the original query params 
+5. The *user* approves the request which includes a request id that is used server side to access the original query params 
 6. The *auth sever* redirects to the *client*'s callback URL with the following detail
    ```
    HTTP 302 Found
@@ -76,7 +76,7 @@ sequenceDiagram
     - For `redirect_uri` currently unknown, see page 49
     - The `Authorization` header includes previously registered credentials that are known by the *auth server*
 9. The new token is stored in a database accessible by both the *auth service* and the *protected resource* alongside the corresponding `client_id`
-10. The *auth server* then responds back to the client with an **access token**
+10. The *auth server* then responds back to the *client* with an **access token**
     ```
     HTTP 200 OK
     Response Body: {
