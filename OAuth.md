@@ -1,4 +1,8 @@
-# Authorization Code Grant Type
+## FAQs
+#### What's the point in the `code` returned by the *auth server*, why not just return the `access_token`?
+The code represents the *user* granting access to some resource to a particular *client*. The `access_token` is then used by the *client* on behalf of the *user*. The `access_token` could be used by anyone to get the protected resource, where as the `code` can only be used by the corresponding *client* (represented by it's `client_id` and `client_secret`)
+
+## Authorization Code Flow
 
 ```mermaid
 sequenceDiagram
@@ -84,7 +88,7 @@ sequenceDiagram
         "token_type": "Bearer"
     }
     ```
-11. The *client* will then display an authorized message to the user once the token has been recieved
+11. The *client* will then display an authorized message to the *user* once the token has been recieved
 12. The *user* makes a call to the *client* that requires it to access the *protected resource*
 13. The *client* sends a post request to the *protected resource* 
     ```
@@ -97,3 +101,4 @@ sequenceDiagram
 14. The *protected resource* checks the *token store* for the token (this may be different with JWT's)
 15. The *protected resource* responds after successful authorization
 16. The *client* responds to the *user* with the resource
+
